@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MovieSwipe - Encuentra tu película</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+
+    <!-- PANTALLA 1: Selector de Mood -->
+    <section id="screen-mood" class="screen active">
+        <div class="screen-content">
+            <h1>🎬 MovieSwipe</h1>
+            <p>¿Qué te apetece ver hoy?</p>
+
+            <div class="mood-grid">
+                <button class="mood-btn" data-genre="28">🔥 Acción</button>
+                <button class="mood-btn" data-genre="35">😂 Comedia</button>
+                <button class="mood-btn" data-genre="18">🎭 Drama</button>
+                <button class="mood-btn" data-genre="27">👻 Terror</button>
+                <button class="mood-btn" data-genre="10749">💕 Romance</button>
+                <button class="mood-btn" data-genre="878">🚀 Sci-Fi</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- PANTALLA 2: Swipe de Películas -->
+    <section id="screen-swipe" class="screen">
+        <div class="screen-content">
+            <header class="swipe-header">
+                <button id="btn-back" class="icon-btn">←</button>
+                <h2>Desliza para elegir</h2>
+                <div class="counter">
+                    <span id="card-count">0</span>/10
+                </div>
+            </header>
+
+            <div class="card-stack">
+                <div class="movie-card" id="movie-card">
+                    <img src="https://via.placeholder.com/300x450" alt="Película" id="movie-poster">
+                    <div class="card-info">
+                        <h3 id="movie-title">Título de la película</h3>
+                        <p id="movie-year">2024</p>
+                        <p id="movie-rating">⭐ 0.0</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="swipe-actions">
+                <button id="btn-reject" class="action-btn reject">❌</button>
+                <button id="btn-accept" class="action-btn accept">✅</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- PANTALLA 3: Veredicto Final -->
+    <section id="screen-result" class="screen">
+        <div class="screen-content">
+            <h1>🏆 Tu Veredicto</h1>
+            <p>La película ganadora es...</p>
+
+            <div class="result-card">
+                <img src="https://via.placeholder.com/250x375" alt="Ganadora" id="result-poster">
+                <h2 id="result-title">Título Ganador</h2>
+                <p id="result-rating">⭐ 0.0</p>
+                <p id="result-overview">Sinopsis de la película...</p>
+            </div>
+
+            <div class="result-actions">
+                <button id="btn-restart" class="primary-btn">🔄 Empezar de nuevo</button>
+            </div>
+        </div>
+    </section>
+
+    <script src="/app.js"></script>
+</body>
+
+</html>
