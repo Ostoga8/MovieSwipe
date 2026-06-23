@@ -27,6 +27,15 @@
                 <button class="mood-btn" data-genre="10749">💕 Romance</button>
                 <button class="mood-btn" data-genre="878">🚀 Sci-Fi</button>
             </div>
+            <!-- NUEVO: Filtros de ordenamiento -->
+            <div class="filter-section">
+                <p class="filter-label">Ordenar por:</p>
+                <div class="filter-buttons">
+                    <button class="filter-btn active" onclick="setSortFilter('popularity.desc')">🔥 Tendencias</button>
+                    <button class="filter-btn" onclick="setSortFilter('vote_average.desc')">⭐ Popularidad</button>
+                    <button class="filter-btn" onclick="setSortFilter('release_date.desc')">🆕 Estrenos</button>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -47,7 +56,7 @@
                     <div class="card-info">
                         <h3 id="movie-title">Título de la película</h3>
                         <p id="movie-year">2024</p>
-                        <p id="movie-rating">⭐ 0.0</p>
+                        <p id="movie-overview" style="margin-top: 10px; font-size: 12px; line-height: 1.4;">Sinopsis...</p>
                     </div>
                 </div>
             </div>
@@ -69,6 +78,7 @@
                 <img src="https://via.placeholder.com/250x375" alt="Ganadora" id="result-poster">
                 <h2 id="result-title">Título Ganador</h2>
                 <p id="result-rating">⭐ 0.0</p>
+                <p id="movie-overview" style="margin-top: 10px; font-size: 12px; line-height: 1.4;">Sinopsis...</p>
                 <p id="result-overview">Sinopsis de la película...</p>
             </div>
 
@@ -78,6 +88,13 @@
         </div>
     </section>
 
+    <!-- 1. Configuración (API Key) -->
+    <script src="config.js"></script>
+    
+    <!-- 2. Módulo de API (Peticiones a TMDB) -->
+    <script src="api.js"></script>
+    
+    <!-- 3. Lógica de la aplicación (Interfaz y eventos) -->
     <script src="app.js"></script>
 </body>
 

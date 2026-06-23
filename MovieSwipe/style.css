@@ -81,7 +81,7 @@ p {
 }
 
 /* =========================================
-   PANTALLA 1: MOODS
+    PANTALLA 1: MOODS
    ========================================= */
 .mood-grid {
     display: grid;
@@ -111,7 +111,7 @@ p {
 }
 
 /* =========================================
-   PANTALLA 2: SWIPE (TARJETAS)
+    PANTALLA 2: SWIPE (TARJETAS)
    ========================================= */
 .swipe-header {
     display: flex;
@@ -184,6 +184,9 @@ p {
     padding: 20px;
     background: linear-gradient(to top, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0) 100%);
     text-align: left;
+    max-height: 150px;
+    /* Para que no se salga */
+    overflow: hidden;
 }
 
 .card-info h3 {
@@ -288,4 +291,53 @@ p {
 .primary-btn:hover {
     background: var(--primary-hover);
     transform: translateY(-2px);
+}
+
+/* =========================================
+FILTROS DE ORDENAMIENTO
+========================================= */
+.filter-section {
+    margin-top: 30px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.filter-label {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+}
+
+.filter-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    padding: 10px 16px;
+    font-size: 13px;
+    font-weight: 500;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-light);
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.filter-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+}
+
+.filter-btn.active {
+    background: var(--primary);
+    border-color: var(--primary);
+    box-shadow: 0 4px 12px rgba(229, 9, 20, 0.3);
 }
