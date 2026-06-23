@@ -4,10 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MovieSwipe - Encuentra tu película</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <title>MovieSwipe - Encuentra tu película</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -16,24 +16,28 @@
     <!-- PANTALLA 1: Selector de Mood -->
     <section id="screen-mood" class="screen active">
         <div class="screen-content">
-            <h1>🎬 MovieSwipe</h1>
-            <p>¿Qué te apetece ver hoy?</p>
+            <h1 data-i18n="app_title">🎬 MovieSwipe</h1>
+            <p data-i18n="app_subtitle">¿Qué te apetece ver hoy?</p>
 
             <div class="mood-grid">
-                <button class="mood-btn" data-genre="28">🔥 Acción</button>
-                <button class="mood-btn" data-genre="35">😂 Comedia</button>
-                <button class="mood-btn" data-genre="18">🎭 Drama</button>
-                <button class="mood-btn" data-genre="27">👻 Terror</button>
-                <button class="mood-btn" data-genre="10749">💕 Romance</button>
-                <button class="mood-btn" data-genre="878">🚀 Sci-Fi</button>
+                <button class="mood-btn" data-genre="28" data-i18n="genre_action">🔥 Acción</button>
+                <button class="mood-btn" data-genre="35" data-i18n="genre_comedy">😂 Comedia</button>
+                <button class="mood-btn" data-genre="18" data-i18n="genre_drama">🎭 Drama</button>
+                <button class="mood-btn" data-genre="27" data-i18n="genre_horror">👻 Terror</button>
+                <button class="mood-btn" data-genre="10749" data-i18n="genre_romance">💕 Romance</button>
+                <button class="mood-btn" data-genre="878" data-i18n="genre_scifi">🚀 Sci-Fi</button>
             </div>
-            <!-- NUEVO: Filtros de ordenamiento -->
+
+            <!-- Filtros de ordenamiento -->
             <div class="filter-section">
-                <p class="filter-label">Ordenar por:</p>
+                <p class="filter-label" data-i18n="sort_by">Ordenar por:</p>
                 <div class="filter-buttons">
-                    <button class="filter-btn active" onclick="setSortFilter('popularity.desc')">🔥 Tendencias</button>
-                    <button class="filter-btn" onclick="setSortFilter('vote_average.desc')">⭐ Popularidad</button>
-                    <button class="filter-btn" onclick="setSortFilter('release_date.desc')">🆕 Estrenos</button>
+                    <button class="filter-btn active" onclick="setSortFilter('popularity.desc', this)"
+                        data-i18n="filter_trending">🔥 Tendencias</button>
+                    <button class="filter-btn" onclick="setSortFilter('vote_average.desc', this)"
+                        data-i18n="filter_popular">⭐ Popularidad</button>
+                    <button class="filter-btn" onclick="setSortFilter('release_date.desc', this)"
+                        data-i18n="filter_new"> 🎬Estrenos</button>
                 </div>
             </div>
         </div>
@@ -44,7 +48,7 @@
         <div class="screen-content">
             <header class="swipe-header">
                 <button id="btn-back" class="icon-btn">←</button>
-                <h2>Desliza para elegir</h2>
+                <h2 data-i18n="swipe_title">Desliza para elegir</h2>
                 <div class="counter">
                     <span id="card-count">0</span>/10
                 </div>
@@ -55,8 +59,8 @@
                     <img src="https://via.placeholder.com/300x450" alt="Película" id="movie-poster">
                     <div class="card-info">
                         <h3 id="movie-title">Título de la película</h3>
-                        <p id="movie-year">2024</p>
-                        <p id="movie-overview" style="margin-top: 10px; font-size: 12px; line-height: 1.4;">Sinopsis...</p>
+                        <p id="movie-year" class="movie-meta">2024</p>
+                        <p id="movie-overview" class="movie-overview">Sinopsis...</p>
                     </div>
                 </div>
             </div>
@@ -71,30 +75,26 @@
     <!-- PANTALLA 3: Veredicto Final -->
     <section id="screen-result" class="screen">
         <div class="screen-content">
-            <h1>🏆 Tu Veredicto</h1>
-            <p>La película ganadora es...</p>
+            <h1 data-i18n="result_title">🏆 Tu Veredicto</h1>
+            <p data-i18n="result_subtitle">La película ganadora es...</p>
 
             <div class="result-card">
                 <img src="https://via.placeholder.com/250x375" alt="Ganadora" id="result-poster">
                 <h2 id="result-title">Título Ganador</h2>
                 <p id="result-rating">⭐ 0.0</p>
-                <p id="movie-overview" style="margin-top: 10px; font-size: 12px; line-height: 1.4;">Sinopsis...</p>
                 <p id="result-overview">Sinopsis de la película...</p>
             </div>
 
             <div class="result-actions">
-                <button id="btn-restart" class="primary-btn">🔄 Empezar de nuevo</button>
+                <button id="btn-restart" class="primary-btn" data-i18n="btn_restart">🔄 Empezar de nuevo</button>
             </div>
         </div>
     </section>
 
-    <!-- 1. Configuración (API Key) -->
+    <!-- Scripts en orden correcto -->
     <script src="config.js"></script>
-    
-    <!-- 2. Módulo de API (Peticiones a TMDB) -->
     <script src="api.js"></script>
-    
-    <!-- 3. Lógica de la aplicación (Interfaz y eventos) -->
+    <script src="i18n.js"></script>
     <script src="app.js"></script>
 </body>
 

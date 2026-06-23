@@ -176,30 +176,35 @@ p {
     object-fit: cover;
 }
 
+/* Contenedor de información de la tarjeta */
 .card-info {
     position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
     padding: 20px;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0) 100%);
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.98) 0%, rgba(0, 0, 0, 0.85) 40%, rgba(0, 0, 0, 0) 100%);
     text-align: left;
-    max-height: 150px;
-    /* Para que no se salga */
-    overflow: hidden;
+    max-height: 200px;
+    display: flex;
+    flex-direction: column;
 }
 
 .card-info h3 {
     font-size: 20px;
     font-weight: 700;
-    margin-bottom: 5px;
+    margin-bottom: 4px;
     line-height: 1.2;
+    flex-shrink: 0;
+    /* Título siempre visible, no se encoge */
 }
 
-.card-info p {
+.card-info .movie-meta {
     font-size: 13px;
-    margin: 2px 0;
+    margin: 2px 0 8px 0;
     color: #d0d0d0;
+    flex-shrink: 0;
+    /* Año y rating fijos */
 }
 
 .swipe-actions {
@@ -340,4 +345,43 @@ FILTROS DE ORDENAMIENTO
     background: var(--primary);
     border-color: var(--primary);
     box-shadow: 0 4px 12px rgba(229, 9, 20, 0.3);
+}
+
+/* Descripción con scroll interno */
+.movie-overview {
+    font-size: 12px;
+    line-height: 1.5;
+    color: #c8c8c8;
+    margin: 0;
+    overflow-y: auto;
+    /* Scroll vertical */
+    max-height: 110px;
+    /* Altura máxima del bloque scrolleable */
+    padding-right: 6px;
+    flex-grow: 1;
+}
+
+/* Scrollbar personalizado (tema oscuro) */
+.movie-overview::-webkit-scrollbar {
+    width: 4px;
+}
+
+.movie-overview::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 2px;
+}
+
+.movie-overview::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 2px;
+}
+
+.movie-overview::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.movie-overview.no-overview {
+    font-style: italic;
+    color: #888;
+    font-size: 11px;
 }

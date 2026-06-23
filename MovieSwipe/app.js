@@ -46,16 +46,25 @@ document.querySelectorAll('.mood-btn').forEach(btn => {
             showScreen('screen-swipe');
             displayMovie(currentIndex);
         } else {
-            alert('No se encontraron películas para este género');
+            alert(t('no_movies'));
         }
     });
 });
 
 // Función para cambiar el filtro de ordenamiento
-function setSortFilter(sortType) {
+function setSortFilter(sortType, btnElement) {
     currentSort = sortType;
     
-    // Actualizar UI (opcional: resaltar el botón activo)
+    // 1. Quitar la clase 'active' de TODOS los botones
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.classList.remove('active');
+    });
+    
+    // 2. Añadir la clase 'active' SOLO al botón clicado
+    if (btnElement) {
+        btnElement.classList.add('active');
+    }
+    
     console.log('Filtro cambiado a:', sortType);
 }
 
@@ -77,7 +86,15 @@ function displayMovie(index) {
     // AÑADIR: Descripción (sinopsis)
     const overviewEl = document.getElementById('movie-overview');
     if (overviewEl) {
-        overviewEl.textContent = movie.overview || 'Sin sinopsis disponible';
+        if (movie.overview && movie.overview.trim() !== '') {
+            overviewEl.textContent = movie.overview;
+            overviewEl.classList.remove('no-overview'); // Quitar estilo de error si existía
+        } else {
+            // Mensaje con personalidad si no hay traducción
+            // Por esto:
+            overviewEl.textContent = t('no_overview');
+            overviewEl.classList.add('no-overview'); // Añadir estilo italic
+        }
     }
 }
 
@@ -105,9 +122,10 @@ function showResult() {
     // Verificar si hay películas aceptadas
     if (acceptedMovies.length === 0) {
         // Si no aceptó ninguna, mostrar mensaje
-        document.getElementById('result-title').textContent = '😕 ¡Ninguna película te convenció!';
         document.getElementById('result-rating').textContent = '';
-        document.getElementById('result-overview').textContent = 'Prueba con otro género o sé menos exigente la próxima vez.';
+        // Por esto:
+        document.getElementById('result-title').textContent = t('no_accepted');
+        document.getElementById('result-overview').textContent = t('no_accepted_desc');
         document.getElementById('result-poster').src = 'https://via.placeholder.com/250x375?text=Sin+Pel%C3%ADculas';
     } else {
         // Algoritmo: seleccionar la película con mayor rating DE LAS ACEPTADAS

@@ -2,36 +2,32 @@
  * Módulo de conexión con la API de TMDB
  */
 
-// Función para obtener películas por género
-async function getMoviesByGenre(genreId) {
-    try {
-        const url = `${TMDB_CONFIG.baseURL}/discover/movie?api_key=${TMDB_CONFIG.apiKey}&with_genres=${genreId}&sort_by=popularity.desc&language=${TMDB_CONFIG.language}&page=1`;
-        
-        // Hacemos la petición a la API
-        const response = await fetch(url);
-        const data = await response.json();
-        
-        // Devolvemos solo el array de resultados
-        return data.results; 
-    } catch (error) {
-        console.error('Error al obtener películas:', error);
-        return []; // Si falla, devolvemos un array vacío para que la app no se rompa
-    }
-}
-
-// Función auxiliar para construir la URL de las imágenes
-function getPosterUrl(posterPath) {
-    if (!posterPath) {
-        // Si la película no tiene póster, usamos una imagen por defecto
-        return 'https://via.placeholder.com/300x450?text=Sin+Imagen';
-    }
-    return `${TMDB_CONFIG.imageURL}${posterPath}`;
+// Obtener el idioma del navegador para pedirlo a TMDB
+function getTmdbLanguage() {
+    const userLang = navigator.language;
+    const langMap = {
+        'zh': 'zh-CN',
+        'zh-CN': 'zh-CN',
+        'zh-TW': 'zh-CN',
+        'ja': 'ja',
+        'ko': 'ko',
+        'es': 'es-ES',
+        'en': 'en-US',
+        'fr': 'fr-FR',
+        'de': 'de-DE',
+        'it': 'it-IT',
+        'pt': 'pt-PT'
+    };
+    
+    const shortLang = userLang.split('-')[0];
+    return langMap[userLang] || langMap[shortLang] || 'en-US';
 }
 
 // Función para obtener películas con diferentes criterios de ordenamiento
 async function getMoviesByGenre(genreId, sortBy = 'popularity.desc') {
     try {
-        const url = `${TMDB_CONFIG.baseURL}/discover/movie?api_key=${TMDB_CONFIG.apiKey}&with_genres=${genreId}&sort_by=${sortBy}&language=${TMDB_CONFIG.language}&page=1`;
+        const tmdbLang = getTmdbLanguage();
+        const url = `${TMDB_CONFIG.baseURL}/discover/movie?api_key=${TMDB_CONFIG.apiKey}&with_genres=${genreId}&sort_by=${sortBy}&language=${tmdbLang}&page=1`;
         
         const response = await fetch(url);
         const data = await response.json();
